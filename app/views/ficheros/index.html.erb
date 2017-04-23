@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ficheros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Tiempoval</th>
+      <th>Rank</th>
+      <th>Fecha crea</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ficheros.each do |fichero| %>
+      <tr>
+        <td><%= fichero.nombre %></td>
+        <td><%= fichero.tiempoVal %></td>
+        <td><%= fichero.rank %></td>
+        <td><%= fichero.fecha_crea %></td>
+        <td><%= link_to 'Show', fichero %></td>
+        <td><%= link_to 'Edit', edit_fichero_path(fichero) %></td>
+        <td><%= link_to 'Destroy', fichero, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fichero', new_fichero_path %>

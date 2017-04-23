@@ -1,0 +1,65 @@
+<div class="alert alert-info alert-dismissable" id="notice">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> <%= notice %>
+</div>
+
+<br/>
+<div class="container">
+<% mis_estandares = Estandar.all%>
+  <div class="panel-group" id="accordion">
+      <% mis_estandares.each do |mi_estandar| %>
+      <% resultado_bad = Resultado.where(:estandar_id => mi_estandar.id, :codError=>1).count%>
+    <% if resultado_bad == 0%>
+    <div class="panel panel-success">
+      <%else%>
+        <div class="panel panel-danger">
+    <%end%>
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%=mi_estandar.id%>">
+          <%=mi_estandar.descripcion%></a>
+        </h4>
+      </div>
+      <div id="collapse<%=mi_estandar.id%>" class="panel-collapse collapse">
+        <div class="panel-body">
+          <% if resultado_bad == 0%>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+        <%else%>
+        <% mis_resultados = Resultado.where(estandar_id:mi_estandar.id,codError:1)%>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fichero</th>
+              <th>Estandar</th>
+              <th>Mensaje Error</th>
+              <th>Ayuda</th>
+              <th colspan="6"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% mis_resultados.each do |res| %>
+            <% mi_fichero = Fichero.find_by(id: res.fichero_id)%>
+              <tr>
+                <td><%= mi_fichero.nombre %></td>
+                <td><%= mi_estandar.descripcion %></td>
+                <td><%= res.msg_error %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%end%>
+
+      </div>
+      </div>
+    </div>
+<%end%>
+  </div>
+
+
+
+
+</div>

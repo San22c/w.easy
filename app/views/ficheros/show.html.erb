@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @fichero.nombre %>
+</p>
+
+<p>
+  <strong>Tiempoval:</strong>
+  <%= @fichero.tiempoVal %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @fichero.rank %>
+</p>
+
+<p>
+  <strong>Fecha crea:</strong>
+  <%= @fichero.fecha_crea %>
+</p>
+
+<%= link_to 'Edit', edit_fichero_path(@fichero) %> |
+<%= link_to 'Back', ficheros_path %>

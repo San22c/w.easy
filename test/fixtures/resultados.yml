@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codError: 1
+  msg_error: MyString
+  fecha_crea: 2017-03-15 18:41:20
+  fichero_id: 
+  estandar_id: 
+
+two:
+  codError: 1
+  msg_error: MyString
+  fecha_crea: 2017-03-15 18:41:20
+  fichero_id: 
+  estandar_id: 

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coderror:</strong>
+  <%= @resultado.codError %>
+</p>
+
+<p>
+  <strong>Msg error:</strong>
+  <%= @resultado.msg_error %>
+</p>
+
+<p>
+  <strong>Fecha crea:</strong>
+  <%= @resultado.fecha_crea %>
+</p>
+
+<p>
+  <strong>Fichero:</strong>
+  <%= @resultado.fichero %>
+</p>
+
+<p>
+  <strong>Estandar:</strong>
+  <%= @resultado.estandar %>
+</p>
+
+<%= link_to 'Edit', edit_resultado_path(@resultado) %> |
+<%= link_to 'Back', resultados_path %>

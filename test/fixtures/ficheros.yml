@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  tiempoVal: 9.99
+  rank: 1
+  fecha_crea: 2017-03-15 18:39:41
+
+two:
+  nombre: MyString
+  tiempoVal: 9.99
+  rank: 1
+  fecha_crea: 2017-03-15 18:39:41

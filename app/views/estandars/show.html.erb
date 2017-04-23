@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @estandar.tipo %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @estandar.descripcion %>
+</p>
+
+<p>
+  <strong>Fecha crea:</strong>
+  <%= @estandar.fecha_crea %>
+</p>
+
+<%= link_to 'Edit', edit_estandar_path(@estandar) %> |
+<%= link_to 'Back', estandars_path %>

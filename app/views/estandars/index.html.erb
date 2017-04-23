@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Estandars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo</th>
+      <th>Descripcion</th>
+      <th>Fecha crea</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @estandars.each do |estandar| %>
+      <tr>
+        <td><%= estandar.tipo %></td>
+        <td><%= estandar.descripcion %></td>
+        <td><%= estandar.fecha_crea %></td>
+        <td><%= link_to 'Show', estandar %></td>
+        <td><%= link_to 'Edit', edit_estandar_path(estandar) %></td>
+        <td><%= link_to 'Destroy', estandar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Estandar', new_estandar_path %>

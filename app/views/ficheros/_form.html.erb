@@ -1,0 +1,33 @@
+<%= form_for(@fichero) do |f| %>
+  <% if @fichero.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fichero.errors.count, "error") %> prohibited this fichero from being saved:</h2>
+
+      <ul>
+      <% @fichero.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :tiempoVal %><br>
+    <%= f.text_field :tiempoVal %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br>
+    <%= f.number_field :rank %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_crea %><br>
+    <%= f.datetime_select :fecha_crea %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
