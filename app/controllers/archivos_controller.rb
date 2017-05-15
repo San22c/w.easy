@@ -67,8 +67,7 @@ class ArchivosController < ApplicationController
               @txt.push(t.text) # sacamos la lista de tamanio fuentes
             end
 
-              debugger
-
+ 
             # def estadar_tip1_fuente   .attr('typeface')
             @estadr = Estandar.find_by(id:1)
 
