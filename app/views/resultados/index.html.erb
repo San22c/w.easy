@@ -3,6 +3,9 @@
 #detail {
   text-align: center;
 }
+#detail_download {
+  text-align: right;
+}
 
 #detail_puntu {
   text-align: center;
@@ -47,16 +50,26 @@
        <%@puntuacion = valoracion%>
       <div id='detail_puntu'><%= @puntuacion[0].size%></div>
     </div>
-    <p><h5>    <span class="glyphicon glyphicon-ok"></span><b> Correctos:</b> <%= @puntuacion[0].size%>     <span class="glyphicon glyphicon-remove"></span><b> Incorrectos:</b><%= @puntuacion[1].size%></h5></p>
+    <%byebug%>
+    <p><h5>    <span class="glyphicon glyphicon-ok"></span><b> Correctos:</b> <%= @puntuacion[0]%>     <span class="glyphicon glyphicon-remove"></span><b> Incorrectos:</b><%= @puntuacion[1]%></h5></p>
 
 
-    <div class="well well-sm" id = 'detail'><h3>Detalle de resultados</h3></div>
+    <div class="well well-sm" id = 'detail'>
+      <div id="detail">
+        <p>Resúmen de resultados</p>
+      </div>
+      <div id="detail_download">
+        <%= link_to resultados_path(format: "xls"), class: "btn btn-default" do %>
+            <i class="glyphicon glyphicon-download-alt"></i> Download
+        <% end %>
+           
+          </div></div>
 
 
  <% mis_estandares = Estandar.all%>
   <div class="panel-group" id="accordion">
       <% mis_estandares.each do |mi_estandar| %>
-      <% resultado_bad = Resultado.where(:fichero_id => session[:fichero_id], :estandar_id => mi_estandar.id, :codError=>1).count%>
+       <% resultado_bad = Resultado.where(:fichero_id => session[:fichero_id], :estandar_id => mi_estandar.id, :codError=>1).count%>
     <% if resultado_bad == 0%>
     <div class="panel panel-success">
           <%else%>
@@ -96,7 +109,32 @@
                 <td><%= mi_fichero.nombre %></td>
                 <td><%= mi_estandar.descripcion %></td>
                 <td><%= res.msg_error %></td>
+                <td><button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+                  <span class="glyphicon glyphicon-info-sign"></span></button></td>
               </tr>
+              <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <br/>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Ayuda</h4>
+        </div>
+        <div class="modal-body">
+
+          <p>Some text in the modal.</p>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
             <% end %>
           </tbody>
         </table>

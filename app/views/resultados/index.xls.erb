@@ -1,0 +1,19 @@
+<table border="1">
+  <tr>
+    <th>ID Resultado</th>
+    <th>Estandar tipo</th>
+    <th>Estandar descripcion</th>
+    <th>Código Error</th>
+    <th>Mensaje error</th>
+  </tr>
+  <% @resultados = Resultado.where(:fichero_id => session[:fichero_id])%>
+  <% @resultados.each do |result| %>
+  <tr>
+    <td><%= result.id %></td>
+    <td><%= Estandar.find(result.estandar_id).tipo %></td>
+    <td><%= Estandar.find(result.estandar_id).descripcion %></td>
+    <td><%= result.codError %></td>
+    <td><%= result.msg_error %></td>
+  </tr>
+  <% end %>
+</table>

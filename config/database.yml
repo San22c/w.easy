@@ -1,46 +1,25 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
 default: &default
-  adapter: postgresql
-  username: wmekgmssxttbzy
-  password: 0e6c016ca97c0cc61ad0697b1cd471e04418798d80467c228c594d25f9e3bead
-
-  host: ec2-46-137-97-169.eu-west-1.compute.amazonaws.com
-
-
-
-
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
 
 development:
   <<: *default
-  database: dcr8ri7lg8odgl
+  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: dcr8ri7lg8odgl
+  database: db/test.sqlite3
 
-# As with config/secrets.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password as a unix environment variable when you boot
-# the app. Read http://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full rundown on how to provide these environment variables in a
-# production deployment.
-#
-# On Heroku and other platform providers, you may have a full connection URL
-# available as an environment variable. For example:
-#
-#   DATABASE_URL="mysql://myuser:mypass@localhost/somedatabase"
-#
-# You can use this database configuration with:
-#
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
   <<: *default
-  database: dcr8ri7lg8odgl
-  username: wmekgmssxttbzy
-  password: DUo4Lr2W_Q5mGOi6GzwQGKPBT6
+  database: db/production.sqlite3

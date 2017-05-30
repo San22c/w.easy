@@ -40,6 +40,7 @@ class ArchivosController < ApplicationController
            @cursiva_fuentes = Array.new()
            @bold_fuentes = Array.new()
            @u_fuentes = Array.new()
+           @fuente_color = Array.new()
            @txt = Array.new()
 
 
@@ -50,28 +51,37 @@ class ArchivosController < ApplicationController
             # Titulo diapositiva
             @titulo = @doc.css('title')
 
+            # Total palabras
+            @words = @doc.css('Words')
+            @total_words= @words.map(&:text)[0]
+
+
             # TIPOGRAFIA
             @pptx = @doc.css("part[name='/ppt/slides/slide1.xml']").css('xmlData').css('sld').css('cSld').css('spTree').css('sp').css('txBody').css('p').css('r').css("latin")
+            @color_fondo = @doc.xpath("//part[@name='/ppt/slides/slide1.xml']//xmlData//sld//cSld//bg")
+
             @ppt_tipo = @doc.xpath("//part[@name='/ppt/slides/slide1.xml']//xmlData//sld//cSld//spTree//sp").each do |node|
-            @fuente=node.xpath("//txBody//p//r//rPr//latin") # sacamos la lista de fuentes
-            end
+              @fuente=node.xpath("//txBody//p//r//rPr//latin") # sacamos la lista de fuentes
+              @fuente_color = node.xpath("//txBody//p//r//rPr//solidFill//srgbClr")
+             end
 
             @ppt_tam = @doc.xpath("//part[@name='/ppt/slides/slide1.xml']//xmlData//sld//cSld//spTree//sp//txBody//p//r//rPr").each do |rpr|
               @tam_fuentes.push(rpr.attr('sz')) # sacamos la lista de tamanio fuentes
               @cursiva_fuentes.push(rpr.attr('i')) # sacamos la lista de cursiva_fuentes fuentes
               @bold_fuentes.push(rpr.attr('b')) # sacamos la lista de negrita fuentes
               @u_fuentes.push(rpr.attr('u')) # sacamos la lista de subraydo fuentes
-            end
+             end
+
 
             @ppt_txt = @doc.xpath("//part[@name='/ppt/slides/slide1.xml']//xmlData//sld//cSld//spTree//sp//txBody//p//r//t").each do |t|
               @txt.push(t.text) # sacamos la lista de tamanio fuentes
             end
 
- 
+
             # def estadar_tip1_fuente   .attr('typeface')
             @estadr = Estandar.find_by(id:1)
-
-            ban_fuente = false
+             ban_fuente = false
+             if @fuente != nil && @fuente.size > 0
              @fuente.each do |font|
                @resultado = Resultado.new
                @resultado.fichero_id = @fichero.id
@@ -87,13 +97,20 @@ class ArchivosController < ApplicationController
                end
                @resultado.save
               end
+              else
+                @resultado = Resultado.new
+                @resultado.fichero_id = @fichero.id
+                @resultado.estandar_id = @estadr.id
+                @resultado.codError = 0
+                 @resultado.save
+              end
               if ban_fuente
                 @msg_array.push('Se han detectado fuentes no validas')
               end
 
               # def estadar_tip2_fuente   .attr('sz')
               @estadr = Estandar.find_by(id:2)
-
+            if @tam_fuentes !=nil && @tam_fuentes.size > 0
               ban_tamanio = false
               @tam_fuentes.each do |tamanio|
                 @resultado = Resultado.new
@@ -112,6 +129,13 @@ class ArchivosController < ApplicationController
                 end
                 @resultado.save
               end
+            else
+              @resultado = Resultado.new
+              @resultado.fichero_id = @fichero.id
+              @resultado.estandar_id = @estadr.id
+              @resultado.codError = 0
+               @resultado.save
+            end
               if ban_tamanio
                 @msg_array.push('Se han detenctado tamaños de fuente no validos')
               end
@@ -120,6 +144,7 @@ class ArchivosController < ApplicationController
               @estadr = Estandar.find_by(id:3)
 
               ban_cursiva = false
+              if @cursiva_fuentes != nil && @cursiva_fuentes.size > 0
               @cursiva_fuentes.each do |i|
                 @resultado = Resultado.new
                 @resultado.fichero_id = @fichero.id
@@ -133,6 +158,13 @@ class ArchivosController < ApplicationController
                 end
                 @resultado.save
               end
+            else
+              @resultado = Resultado.new
+              @resultado.fichero_id = @fichero.id
+              @resultado.estandar_id = @estadr.id
+              @resultado.codError = 0
+              @resultado.save
+            end
                 if ban_cursiva
                   @msg_array.push('Formato de texto invalido: no se admiten cursivas')
               end
@@ -142,9 +174,8 @@ class ArchivosController < ApplicationController
 
               cuenta_bold = 0
               ban_bold = false
+              if @bold_fuentes !=nil &&  @bold_fuentes.size > 0
               @bold_fuentes.each do |b|
-
-
                 if !b.nil?
                   cuenta_bold = cuenta_bold + 1
                 end
@@ -160,14 +191,20 @@ class ArchivosController < ApplicationController
                 end
                 @resultado.save
               end
+            else
+              @resultado = Resultado.new
+              @resultado.fichero_id = @fichero.id
+              @resultado.estandar_id = @estadr.id
+              @resultado.codError = 0
+              @resultado.save
+            end
               if ban_bold
                 @msg_array.push('Superado el limite de cuadtos de texto en formato negrita')
               end
 
               # def tip5_subrayado .attr('u')
               @estadr = Estandar.find_by(id:5)
-
-              cuenta_u = 0
+               cuenta_u = 0
               ban_subry= false
               @u_fuentes.each do |u|
 
@@ -189,6 +226,12 @@ class ArchivosController < ApplicationController
 
 
               #Sombreado
+              @estadr = Estandar.find_by(id:6)
+              @resultado = Resultado.new
+              @resultado.fichero_id = @fichero.id
+              @resultado.estandar_id = @estadr.id
+              @resultado.codError = 0
+              @resultado.save
 
               #Mayusculas
               @estadr = Estandar.find_by(id:7)
@@ -215,62 +258,77 @@ class ArchivosController < ApplicationController
 
              #Color NEGRO tipografia
              @estadr = Estandar.find_by(id:8)
+             if @fuente_color !=nil && @fuente_color.size > 0
 
-            cuenta_capital = 0
-            @txt.each do |texto|
-              if texto == texto.upcase
-                cuenta_capital = cuenta_capital + 1
-              end
-            end
-            @resultado = Resultado.new
-            @resultado.fichero_id = @fichero.id
-            @resultado.estandar_id = @estadr.id
-            if cuenta_capital > 5
-              @resultado.codError = 1
-              @resultado.msg_error = 'Superado el limite de cuadros de texto en MAYUSCULA'
-              @msg_array.push('Superado el limite de cuadros de texto en MAYUSCULA')
-            else
-              @resultado.codError = 0
-            end
-            @resultado.save
+             ban_fuente_color = false
+              @fuente_color.each do |font|
+                @resultado = Resultado.new
+                @resultado.fichero_id = @fichero.id
+                @resultado.estandar_id = @estadr.id
+
+                color = font.attr('val')
+                 if color != '000000'
+                  ban_fuente_color = true
+                  @resultado.codError = 1
+                  @resultado.msg_error = 'Color de fuente detectado no valido'+ ' ' + color
+                else
+                  @resultado.codError = 0
+                end
+                @resultado.save
+               end
+             else
+               @resultado = Resultado.new
+               @resultado.fichero_id = @fichero.id
+               @resultado.estandar_id = @estadr.id
+               @resultado.codError = 0
+               @resultado.save
+             end
+               if ban_fuente_color
+                 @msg_array.push('Se han detectado colores de fuentes no válidos')
+               end
+
+
 
             #Color BLANCO background
             @estadr = Estandar.find_by(id:9)
+            if  @color_fondo!=nil &&  @color_fondo.size > 0
+            ban_fuente_color = false
+             @color_fondo.each do |fondo|
+               @resultado = Resultado.new
+               @resultado.fichero_id = @fichero.id
+               @resultado.estandar_id = @estadr.id
 
-           cuenta_capital = 0
-           @txt.each do |texto|
-             if texto == texto.upcase
-               cuenta_capital = cuenta_capital + 1
-             end
-           end
-           @resultado = Resultado.new
-           @resultado.fichero_id = @fichero.id
-           @resultado.estandar_id = @estadr.id
-           if cuenta_capital > 5
-             @resultado.codError = 1
-             @resultado.msg_error = 'Superado el limite de cuadros de texto en MAYUSCULA'
-             @msg_array.push('Superado el limite de cuadros de texto en MAYUSCULA')
-           else
-             @resultado.codError = 0
-           end
-           @resultado.save
+               color = fondo.attr('val')
+                if color != 'FFFFFF'
+                 ban_fuente_color = true
+                 @resultado.codError = 1
+                 @resultado.msg_error = 'Color de fondo detectado no válido'+ ' ' + color
+               else
+                 @resultado.codError = 0
+               end
+               @resultado.save
+              end
+            else
+              @resultado = Resultado.new
+              @resultado.fichero_id = @fichero.id
+              @resultado.estandar_id = @estadr.id
+              @resultado.codError = 0
+              @resultado.save
+            end
+              if ban_fuente_color
+                @msg_array.push('Se ha detectado color de fondo no válido')
+              end
 
            #CPalabras por diapositiva
            @estadr = Estandar.find_by(id:10)
 
-          cuenta_capital = 0
-          @txt.each do |texto|
-            if texto == texto.upcase
-              cuenta_capital = cuenta_capital + 1
-            end
-          end
           @resultado = Resultado.new
           @resultado.fichero_id = @fichero.id
           @resultado.estandar_id = @estadr.id
-          if cuenta_capital > 5
+          if @total_words.to_i > 50
             @resultado.codError = 1
-            @resultado.msg_error = 'Superado el limite de cuadros de texto en MAYUSCULA'
-            @msg_array.push('Superado el limite de cuadros de texto en MAYUSCULA')
+            @resultado.msg_error = 'Superado el limite permitido de palabras'
+            @msg_array.push('Superado el limite permitido de palabras')
           else
             @resultado.codError = 0
           end

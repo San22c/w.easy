@@ -4,7 +4,12 @@ class ResultadosController < ApplicationController
   # GET /resultados
   # GET /resultados.json
   def index
-    @resultados = Resultado.all
+    @resultados = Resultado.order(:estandar_id)
+     respond_to do |format|
+       format.html
+       format.csv { send_data @resultados.to_csv }
+       format.xls
+     end
   end
 
   # GET /resultados/1
