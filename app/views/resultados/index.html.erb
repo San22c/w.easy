@@ -68,7 +68,7 @@
  <% mis_estandares = Estandar.all%>
   <div class="panel-group" id="accordion">
       <% mis_estandares.each do |mi_estandar| %>
-       <% resultado_bad = Resultado.where(:fichero_id => session[:fichero_id], :estandar_id => mi_estandar.id, :codError=>1).count%>
+       <% resultado_bad = Resultado.where(:fichero_id => session[:fichero_id], :estandar_id => mi_estandar.id, :coderror=>1).count%>
     <% if resultado_bad == 0%>
     <div class="panel panel-success">
           <%else%>
@@ -89,7 +89,7 @@
         <div class="panel-body">
           <% if resultado_bad == 0%>
         <%else%>
-          <% mis_resultados = Resultado.where(:fichero_id => session[:fichero_id], estandar_id:mi_estandar.id,codError:1)%>
+          <% mis_resultados = Resultado.where(:fichero_id => session[:fichero_id], estandar_id:mi_estandar.id,coderror:1)%>
           <table class="table">
             <thead>
             <tr>

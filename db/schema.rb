@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315182519) do
+ActiveRecord::Schema.define(version: 20170530185709) do
 
   create_table "estandars", force: :cascade do |t|
     t.string   "tipo"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170315182519) do
   end
 
   create_table "resultados", force: :cascade do |t|
-    t.integer  "codError"
+    t.integer  "coderror"
     t.string   "msg_error"
     t.integer  "fichero_id"
     t.integer  "estandar_id"

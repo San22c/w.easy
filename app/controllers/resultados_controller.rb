@@ -74,6 +74,6 @@ class ResultadosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resultado_params
-      params.require(:resultado).permit(:codError, :msg_error, :fecha_crea, :fichero_id, :estandar_id)
+      params.require(:resultado).permit(:coderror, :msg_error, :fecha_crea, :fichero_id, :estandar_id)
     end
 end

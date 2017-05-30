@@ -90,10 +90,10 @@ class ArchivosController < ApplicationController
                font_find = @tips_fuentes.detect{|w| w == tipografia}
                if font_find.nil?
                  ban_fuente = true
-                 @resultado.codError = 1
+                 @resultado.coderror = 1
                  @resultado.msg_error = 'Fuente detectada no valida'+ ' ' + tipografia
                else
-                 @resultado.codError = 0
+                 @resultado.coderror = 0
                end
                @resultado.save
               end
@@ -101,7 +101,7 @@ class ArchivosController < ApplicationController
                 @resultado = Resultado.new
                 @resultado.fichero_id = @fichero.id
                 @resultado.estandar_id = @estadr.id
-                @resultado.codError = 0
+                @resultado.coderror = 0
                  @resultado.save
               end
               if ban_fuente
@@ -122,10 +122,10 @@ class ArchivosController < ApplicationController
                 end
                 if ((tamanio.to_i)/100) < 12 or ((tamanio.to_i)/100) > 16
                   ban_tamanio = true
-                  @resultado.codError = 1
+                  @resultado.coderror = 1
                   @resultado.msg_error = 'Tamaño fuente no valido'+ ' ' + ((tamanio.to_i)/100).to_s
                 else
-                  @resultado.codError = 0
+                  @resultado.coderror = 0
                 end
                 @resultado.save
               end
@@ -133,7 +133,7 @@ class ArchivosController < ApplicationController
               @resultado = Resultado.new
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
-              @resultado.codError = 0
+              @resultado.coderror = 0
                @resultado.save
             end
               if ban_tamanio
@@ -151,10 +151,10 @@ class ArchivosController < ApplicationController
                 @resultado.estandar_id = @estadr.id
                 if !i.nil?
                   ban_cursiva = true
-                  @resultado.codError = 1
+                  @resultado.coderror = 1
                   @resultado.msg_error = 'No se admiten textos en cursiva'
                 else
-                  @resultado.codError = 0
+                  @resultado.coderror = 0
                 end
                 @resultado.save
               end
@@ -162,7 +162,7 @@ class ArchivosController < ApplicationController
               @resultado = Resultado.new
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
-              @resultado.codError = 0
+              @resultado.coderror = 0
               @resultado.save
             end
                 if ban_cursiva
@@ -184,10 +184,10 @@ class ArchivosController < ApplicationController
                 @resultado.estandar_id = @estadr.id
                 if cuenta_bold > 5
                   ban_bold = true
-                  @resultado.codError = 1
+                  @resultado.coderror = 1
                   @resultado.msg_error = 'Superado el limite de cuadtos de texto en formato negrita'
                 else
-                  @resultado.codError = 0
+                  @resultado.coderror = 0
                 end
                 @resultado.save
               end
@@ -195,7 +195,7 @@ class ArchivosController < ApplicationController
               @resultado = Resultado.new
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
-              @resultado.codError = 0
+              @resultado.coderror = 0
               @resultado.save
             end
               if ban_bold
@@ -216,11 +216,11 @@ class ArchivosController < ApplicationController
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
               if cuenta_u > 5
-                @resultado.codError = 1
+                @resultado.coderror = 1
                 @resultado.msg_error = 'Superado el limite de cuadros de texto en formato subrayado'
                 @msg_array.push('Superado el limite de cuadros de texto en formato subrayado')
               else
-                @resultado.codError = 0
+                @resultado.coderror = 0
               end
               @resultado.save
 
@@ -230,7 +230,7 @@ class ArchivosController < ApplicationController
               @resultado = Resultado.new
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
-              @resultado.codError = 0
+              @resultado.coderror = 0
               @resultado.save
 
               #Mayusculas
@@ -246,11 +246,11 @@ class ArchivosController < ApplicationController
              @resultado.fichero_id = @fichero.id
              @resultado.estandar_id = @estadr.id
              if cuenta_capital > 5
-               @resultado.codError = 1
+               @resultado.coderror = 1
                @resultado.msg_error = 'Superado el limite de cuadros de texto en MAYUSCULA'
                @msg_array.push('Superado el limite de cuadros de texto en MAYUSCULA')
              else
-               @resultado.codError = 0
+               @resultado.coderror = 0
              end
              @resultado.save
 
@@ -269,10 +269,10 @@ class ArchivosController < ApplicationController
                 color = font.attr('val')
                  if color != '000000'
                   ban_fuente_color = true
-                  @resultado.codError = 1
+                  @resultado.coderror = 1
                   @resultado.msg_error = 'Color de fuente detectado no valido'+ ' ' + color
                 else
-                  @resultado.codError = 0
+                  @resultado.coderror = 0
                 end
                 @resultado.save
                end
@@ -280,7 +280,7 @@ class ArchivosController < ApplicationController
                @resultado = Resultado.new
                @resultado.fichero_id = @fichero.id
                @resultado.estandar_id = @estadr.id
-               @resultado.codError = 0
+               @resultado.coderror = 0
                @resultado.save
              end
                if ban_fuente_color
@@ -301,10 +301,10 @@ class ArchivosController < ApplicationController
                color = fondo.attr('val')
                 if color != 'FFFFFF'
                  ban_fuente_color = true
-                 @resultado.codError = 1
+                 @resultado.coderror = 1
                  @resultado.msg_error = 'Color de fondo detectado no válido'+ ' ' + color
                else
-                 @resultado.codError = 0
+                 @resultado.coderror = 0
                end
                @resultado.save
               end
@@ -312,7 +312,7 @@ class ArchivosController < ApplicationController
               @resultado = Resultado.new
               @resultado.fichero_id = @fichero.id
               @resultado.estandar_id = @estadr.id
-              @resultado.codError = 0
+              @resultado.coderror = 0
               @resultado.save
             end
               if ban_fuente_color
@@ -326,11 +326,11 @@ class ArchivosController < ApplicationController
           @resultado.fichero_id = @fichero.id
           @resultado.estandar_id = @estadr.id
           if @total_words.to_i > 50
-            @resultado.codError = 1
+            @resultado.coderror = 1
             @resultado.msg_error = 'Superado el limite permitido de palabras'
             @msg_array.push('Superado el limite permitido de palabras')
           else
-            @resultado.codError = 0
+            @resultado.coderror = 0
           end
           @resultado.save
 
