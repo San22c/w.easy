@@ -50,8 +50,7 @@
        <%@puntuacion = valoracion%>
       <div id='detail_puntu'><%= @puntuacion[0].size%></div>
     </div>
-    <%byebug%>
-    <p><h5>    <span class="glyphicon glyphicon-ok"></span><b> Correctos:</b> <%= @puntuacion[0]%>     <span class="glyphicon glyphicon-remove"></span><b> Incorrectos:</b><%= @puntuacion[1]%></h5></p>
+     <p><h5>    <span class="glyphicon glyphicon-ok"></span><b> Correctos:</b> <%= @puntuacion[0]%>     <span class="glyphicon glyphicon-remove"></span><b> Incorrectos:</b><%= @puntuacion[1]%></h5></p>
 
 
     <div class="well well-sm" id = 'detail'>
@@ -62,7 +61,7 @@
         <%= link_to resultados_path(format: "xls"), class: "btn btn-default" do %>
             <i class="glyphicon glyphicon-download-alt"></i> Download
         <% end %>
-           
+
           </div></div>
 
 
