@@ -201,14 +201,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+ <%= link_to "HOME", archivos_subir_archivos_path, :class =>"navbar-brand"%>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about">LECTURA FÁCIL</a></li>
         <li><a href="#services">SERVICIOS</a></li>
-        <li><a href="#ranking">RANKING</a></li>
-        <li><a href="#contact">AYUDA</a></li>
+         <li><a href="#contact">AYUDA</a></li>
         <li><a href="#contact">CONTACTO</a></li>
       </ul>
     </div>
@@ -246,7 +245,7 @@
       <h4>La Lectura Fácil es un método de adaptación y redacción de materiales que pretende hacer accesible la información y la cultura a las personas con dificultades de comprensión lectora.
     El objetivo de las publicaciones en lectura fácil es presentar textos claros y fáciles de comprender, apropiados para diferentes grupos de edad.</h4><br>
       <p>El método consiste en la formulación de propuestas concretas, por una parte, en aspectos de expresión escrita, como ortografía, gramática, vocabulario y estilo, y por otra, en cuestiones relativas a edición, como tipografía, ilustración, maquetación y producción. Intenta abarcar todas las facetas de forma global para que los textos sean realmente efectivos. Utilizar este método beneficia a todas las personas que quieran acometer proyectos de adaptación de textos, al tener una referencia concreta y detallada. También es muy útil para profesionales de terapia ocupacional, educación especial y cualquier otro que tenga relación con personas con dificultades lectoras.</p>
-      <br><button class="btn btn-default btn-lg">Más información...</button>
+      <br>
     </div>
     <div class="col-sm-4">
       <%= image_tag "teaserbox_10524460.jpg",:class => "img-responsive" %>
@@ -262,9 +261,8 @@
     </div>
     <div class="col-sm-8">
       <h2>Nuestro Servicio Web</h2><br>
-      <h4><strong>OBJETIVO:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h4><strong>OBJETIVO:</strong> Hacer que el contenido sea accesible para cualquier persona. Para ello analizaremos tu diapositiva en formato XML y valorar si cumple los estandares establecidos por la metodología Lectura Fácil.</h4><br>
+
     </div>
   </div>
 </div>
@@ -272,74 +270,51 @@
 <!-- Container (Services Section) -->
 <div id="services" class="container-fluid text-center">
   <h2>SERVICIOS</h2>
-  <h4>What we offer</h4>
+  <h4>Que ofrecemos</h4>
   <br>
-  <div class="row slideanim">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-off logo-small"></span>
-      <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-heart logo-small"></span>
-      <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
-    </div>
-  </div>
+
   <br><br>
   <div class="row slideanim">
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-leaf logo-small"></span>
       <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>Lectura Fácil..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-certificate logo-small"></span>
       <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>Calificamos el grado de adaptabilidad de tu diapositiva..</p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-wrench logo-small"></span>
       <h4 style="color:#303030;">HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p>Seguimos desarrollando para mejorar nuestro servicio..</p>
     </div>
   </div>
 </div>
 
 <!-- Container (Portfolio Section) -->
 <div id="ranking" class="container-fluid text-center bg-grey">
-  <h2>RANKING</h2><br>
-  <h4>What we have created</h4>
+
   <div class="row text-center slideanim">
     <div class="col-sm-4">
       <div class="thumbnail">
-        <img src="paris.jpg" alt="Paris" width="400" height="300">
-        <p><strong>Paris</strong></p>
-        <p>Yes, we built Paris</p>
+
       </div>
     </div>
     <div class="col-sm-4">
       <div class="thumbnail">
-        <img src="newyork.jpg" alt="New York" width="400" height="300">
-        <p><strong>New York</strong></p>
-        <p>We built New York</p>
+
       </div>
     </div>
     <div class="col-sm-4">
       <div class="thumbnail">
-        <img src="sanfran.jpg" alt="San Francisco" width="400" height="300">
-        <p><strong>San Francisco</strong></p>
-        <p>Yes, San Fran is ours</p>
+
       </div>
     </div>
   </div><br>
 
-  <h2>What our customers say</h2>
+  <h2>Metodlogía Lecuta Fácil</h2>
   <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -355,10 +330,10 @@
 científico y en los beneficios que de él resulten. </span></h4>
       </div>
       <div class="item">
-        <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+        <h4><br><span>La Lectura Fácil protege el derecho de acceso a la información</span></h4>
       </div>
       <div class="item">
-        <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+        <h4><br><span>Democracia lectora</span></h4>
       </div>
     </div>
 
